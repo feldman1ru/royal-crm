@@ -1,7 +1,7 @@
 <page-header title="customers" subtitle="this iS the Costumers page" icon="fas fa-users">
 </page-header>
 
-<table class="table">
+<table *ngIf="customers.length; else noContacts" class="table">
   <thead>
     <tr>
       <th>Num.</th>
@@ -21,3 +21,7 @@
     </tr>
   </tbody>
 </table>
+
+<ng-template #noContacts>
+  <div>{{'Opss... no Contacts where found in the database' | stringPipe }}</div>
+</ng-template>
