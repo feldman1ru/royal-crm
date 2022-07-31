@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Customer } from '../customer';
+import { CustomerService } from '../costumers.service';
 
 @Component({
   selector: 'customers-page',
@@ -9,41 +10,7 @@ import { Customer } from '../customer';
 export class CustomersPageComponent {
   customers: Array<Customer> = [];
 
-  constructor() {
-    this.customers.push(
-      {
-      _id: '1',
-      firstName: 'Regular',
-      lastName: 'User',
-      email: 'user@gmail.com',
-      phone: '050-0000000',
-      address: {
-        country: 'israel',
-        city: 'tel-aviv',
-        street: 'rotshild',
-        houseNumber: 0,
-        zip: 1234,
-      },
-      createdAt: new Date(),
-      notes: 'a very good customer!',
-    },
-    {
-      _id: '2',
-      firstName: 'Second',
-      lastName: 'User',
-      email: 'second@gmail.com',
-      phone: '050-0000000',
-      address: {
-        country: 'israel',
-        city: 'tel-aviv',
-        street: 'rotshild',
-        houseNumber: 0,
-        zip: 1234,
-      },
-      createdAt: new Date(),
-      notes: 'a very good second!',
-    }
-
-    );
+  constructor(CS: CustomerService) {
+    this.customers = CS.getAll();
   }
 }

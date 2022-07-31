@@ -1,10 +1,14 @@
-<page-header title="customers" subtitle="this iS the Costumers page" icon="fas fa-users">
+<page-header
+  title="customers"
+  subtitle="this is the Costumers page"
+  icon="fas fa-users"
+>
 </page-header>
 
-<table *ngIf="customers.length; else noContacts" class="table">
+<table *ngIf="customers.length; else noCustomers" class="table">
   <thead>
     <tr>
-      <th>{{"Num" | stringPipe}}</th>
+      <th>{{ "Num." | titlecase }}</th>
       <th>Name</th>
       <th>Surname</th>
       <th>Phone</th>
@@ -12,16 +16,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor=" let customer of customers; index as i">
+    <tr
+      [ngClass]="odd ? 'alert-success' : 'bg-light'"
+      *ngFor="let customer of customers; index as i; odd as odd"
+    >
       <td>{{ i + 1 }}</td>
-      <td>{{ customer.firstName | stringPipe }}</td>
-      <td>{{ customer.lastName }}</td>
+      <td>{{ customer.firstName | textCapital }}</td>
+      <td>{{ customer.lastName | textCapital }}</td>
       <td>{{ customer.phone }}</td>
       <td>{{ customer.email }}</td>
     </tr>
   </tbody>
 </table>
 
-<ng-template #noContacts>
-  <div>{{'Opss... no Contacts where found in the database' | stringPipe }}</div>
+<ng-template #noCustomers>
+  <div class="p-2">
+    {{ "no Customers where found in the database" | textCapital }}
+  </div>
 </ng-template>
