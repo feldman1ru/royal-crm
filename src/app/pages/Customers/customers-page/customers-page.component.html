@@ -5,7 +5,11 @@
 >
 </page-header>
 
-<table *ngIf="customers.length; else noCustomers" class="table">
+<div class="mb-2">
+  <a routerLink="new-costumer" class="btn btn-outline-dark" title="Add  new costomer" role="button">{{"add costomer" | titlecase}}</a>
+</div>
+
+<table *ngIf="customers && customers.length; else noCustomers" class="table">
   <thead>
     <tr>
       <th>{{ "Num." | titlecase }}</th>

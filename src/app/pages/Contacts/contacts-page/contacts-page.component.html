@@ -1,1 +1,54 @@
-<p>contacts-page works!</p>
+<page-header
+  title="contacts"
+  subtitle="this is the Contacts page"
+  icon="fas fa-users"
+>
+</page-header>
+
+<div class="mb-2">
+  <a routerLink="new-contact" class="btn btn-outline-dark" title="Add  new contact" role="button">{{"add contacts" | titlecase}}</a>
+</div>
+
+<table *ngIf="contacts && contacts.length; else noContacts" class="table">
+  <thead>
+    <tr>
+      <th>{{ "Num." | titlecase }}</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>birthday</th>
+      <th>age</th>
+      <th>country</th>
+      <th>city</th>
+      <th>street</th>
+      <th>houseNumber</th>
+      <th>createdAt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      [ngClass]="odd ? 'alert-success' : 'bg-light'"
+      *ngFor="let contact of contacts; index as i; odd as odd"
+    >
+      <td>{{ i + 1 }}</td>
+      <td>{{ contact.firstName | textCapital }}</td>
+      <td>{{ contact.lastName | textCapital }}</td>
+      <td>{{ contact.phone }}</td>
+      <td>{{ contact.email }}</td>
+      <td>{{ contact.birthday | date }}</td>
+      <td>{{ contact.age }}</td>
+      <td>{{ contact.address.country }}</td>
+      <td>{{ contact.address.city }}</td>
+      <td>{{ contact.address.street }}</td>
+      <td>{{ contact.address.houseNumber }}</td>
+      <td>{{ contact.createdAt | date :'medium' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noContacts>
+  <div class="p-2">
+    {{ "no Contacts where found in the database" | textCapital }}
+  </div>
+</ng-template>

@@ -21,13 +21,20 @@ import { SideNavComponent } from './layout/main/side-nav/side-nav.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { ContactsPageComponent } from './pages/Contacts/contacts-page/contacts-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { FormsModule } from '@angular/forms';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { NewCustomerComponent } from './pages/Customers/new-customer/new-customer.component';
+import { CustomerFormComponent } from './pages/Customers/customer-form/customer-form.component';
+import { ContactComponent } from './pages/Contacts/contact/contact.component';
+import { NewContactComponent } from './pages/Contacts/new-contact/new-contact.component';
+import { ContactsFormComponent } from './pages/Contacts/contacts-form/contacts-form.component';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
