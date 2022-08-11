@@ -48,4 +48,17 @@ export class CustomerService {
     customer._id = String(this.customers.length + 1 ) + new Date() + Math.random();
     return this.customers.push({...customer, createdAt: new Date() })
   }
+
+  delete(id: string){
+    let customerIndex = this.customers.findIndex((customer: Customer) => customer._id === id);
+    if(customerIndex === -1) return;
+    this.customers.splice(customerIndex, 1)
+  }
+
+  getCustomer(id: string): Customer | void {
+    const customer = this.customers.find((customer: Customer)=> customer._id === id);
+    if(!customer) return
+    return customer
+
+  }
 }

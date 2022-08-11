@@ -13,13 +13,14 @@ export class ContactsFormComponent {
   @Output() sumbit = new EventEmitter();
 
   onSudmit({valid, value}: NgForm){
+    
     if(valid){
       this.sumbit.emit(value)
       
     }
   }
   resetForm(form: NgForm){
-    form.reset()
+    form.resetForm()
 
   }
 

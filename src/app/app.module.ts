@@ -28,12 +28,14 @@ import { CustomerFormComponent } from './pages/Customers/customer-form/customer-
 import { ContactComponent } from './pages/Contacts/contact/contact.component';
 import { NewContactComponent } from './pages/Contacts/new-contact/new-contact.component';
 import { ContactsFormComponent } from './pages/Contacts/contacts-form/contacts-form.component';
+import { CustomerDetailsComponent } from './pages/Customers/customer-details/customer-details.component';
+import { ContactDetailsComponent } from './pages/Contacts/contact-details/contact-details.component';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent],
+  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
