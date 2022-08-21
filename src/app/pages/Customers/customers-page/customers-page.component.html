@@ -6,10 +6,15 @@
 </page-header>
 
 <div class="mb-2">
-  <a routerLink="new-costumer" class="btn btn-outline-dark" title="Add  new costomer" role="button">{{"add costomer" | titlecase}}</a>
+  <a
+    routerLink="new-customer"
+    class="btn btn-outline-dark"
+    title="Add new customer"
+    >{{ "add customer" | titlecase }}</a
+  >
 </div>
 
-<table *ngIf="customers && customers.length; else noCustomers" class="table">
+<table *ngIf="customers.length; else noCustomers" class="table">
   <thead>
     <tr>
       <th>{{ "Num." | titlecase }}</th>
@@ -25,7 +30,7 @@
     <tr
       [ngClass]="odd ? 'alert-success' : 'bg-light'"
       *ngFor="let customer of customers; index as i; odd as odd"
-      [routerLink]="['costumer-details', customer._id]"
+      [routerLink]="['customer-details', customer._id]"
       role="button"
     >
       <td>{{ i + 1 }}</td>
@@ -33,10 +38,22 @@
       <td>{{ customer.lastName | textCapital }}</td>
       <td>{{ customer.phone }}</td>
       <td>{{ customer.email }}</td>
-      <td>edit</td>
-      <td><button class="btn btn-outline-dark" (click)="deleteCustomer($event, customer._id!)">
-        <i class="fas fa-trash"></i>
-      </button></td>
+      <td>
+        <a
+          class="btn btn-outline-dark"
+          [routerLink]="['edit-customer', customer._id]"
+          role="button"
+          ><i class="fas fa-pen"></i
+        ></a>
+      </td>
+      <td>
+        <button
+          class="btn btn-outline-dark"
+          (click)="deleteCustomer($event, customer._id!)"
+        >
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

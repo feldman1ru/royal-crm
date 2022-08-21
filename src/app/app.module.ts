@@ -30,12 +30,18 @@ import { NewContactComponent } from './pages/Contacts/new-contact/new-contact.co
 import { ContactsFormComponent } from './pages/Contacts/contacts-form/contacts-form.component';
 import { CustomerDetailsComponent } from './pages/Customers/customer-details/customer-details.component';
 import { ContactDetailsComponent } from './pages/Contacts/contact-details/contact-details.component';
+import { EditCustomerComponent } from './pages/Customers/edit-customer/edit-customer.component';
+import { AgePipe } from './pipes/age.pipe';
+import { EditContactComponent } from './pages/Contacts/edit-contact/edit-contact.component';
+
+
+
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent],
+  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent, EditCustomerComponent, AgePipe, EditContactComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

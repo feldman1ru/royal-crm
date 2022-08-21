@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Customer } from '../customer';
 import { CustomerService } from '../costumers.service';
+import { Customer } from '../customer';
+
 
 @Component({
   selector: 'customers-page',
@@ -14,9 +15,9 @@ export class CustomersPageComponent {
     this.customers = CS.getAll();
   }
 
-  deleteCustomer(e: MouseEvent, id: string){
+  deleteCustomer(e: MouseEvent, id: string) {
     e.stopPropagation();
     this.CS.delete(id);
-    // this.customers = this.CS.getAll();
+    this.customers = this.CS.getAll();
   }
 }

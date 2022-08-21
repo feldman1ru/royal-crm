@@ -7,7 +7,7 @@ export interface Contact {
         email: string;
         birthday: Date;
         phone: string;
-        age: number;
+        age?: number;
         address: Address;
         createdAt?: Date;
         

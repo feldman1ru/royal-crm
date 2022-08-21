@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Contact } from '../contact';
 
 @Component({
   selector: 'app-contacts-form',
@@ -7,21 +8,48 @@ import { NgForm } from '@angular/forms';
   styles: [
   ]
 })
-export class ContactsFormComponent {
-  
-
-  @Output() sumbit = new EventEmitter();
-
-  onSudmit({valid, value}: NgForm){
+export class ContactsFormComponent implements OnInit {
+  @Output() submit = new EventEmitter();
+  @Output() reset = new EventEmitter();
+  @Input() contact: Contact = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: {
+      state: '',
+      country: '',
+      city: '',
+      street: '',
+      houseNumber: 0,
+    },
+    birthday: new Date,
     
-    if(valid){
-      this.sumbit.emit(value)
-      
-    }
-  }
-  resetForm(form: NgForm){
-    form.resetForm()
+  };
+  
+  ngOnInit(){
 
   }
 
+  onSubmit({ valid, value }: NgForm) {
+    if(valid)this.submit.emit(value);
+  }
+
+  resetForm(form: NgForm) {
+    form.resetForm({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      address: {
+        state: '',
+        country: '',
+        city: '',
+        street: '',
+        houseNumber: 0,
+      },
+      birthday: new Date,
+    });
+    this.reset.emit();
+  }
 }

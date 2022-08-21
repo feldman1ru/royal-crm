@@ -11,13 +11,9 @@ export class LoginPageComponent {
 
   login: Login = {email:'',password: ''}
   onSubmit({value,valid}: NgForm) {
-    console.log(value);
-    console.log(valid);
-    
-    
+   
   }
   resetForm(form: NgForm){
     form.resetForm();
   }
-
 }

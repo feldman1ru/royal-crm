@@ -1,7 +1,8 @@
 <form
   #contactForm="ngForm"
+  novalidate="novalidate"
   autocomplete="off"
-  (ngSubmit)="onSudmit(contactForm)"
+  (ngSubmit)="onSubmit(contactForm)"
   class="form border rounded p-2"
 >
   <!-- זיהוי -->
@@ -14,12 +15,12 @@
 
   <div class="row justify-content-center mt-2">
     <div class="col-12 col-md-5 mb-2 form-group">
-      <label for="firstName"
+      <label for="first"
         ><span class="text-danger">*</span>
         {{ "first name" | titlecase }}</label
       ><input
-        id="firstName"
-        ngModel
+        id="first"
+        [(ngModel)]="contact.firstName"
         name="firstName"
         type="text"
         class="form-control"
@@ -37,10 +38,11 @@
     </div>
 
     <div class="col-md-5 mb-2 form-group">
-      <label for="lastName"
+      <label for="last"
         ><span class="text-danger">*</span> {{ "last name" | titlecase }}</label>
       <input
-        ngModel
+      id="last"
+        [(ngModel)]="contact.lastName"
         #lastNameField="ngModel"
         name="lastName"
         type="text"
@@ -71,7 +73,8 @@
       <label for="email"
         ><span class="text-danger">*</span> {{ "email" | titlecase }}</label
       ><input
-        ngModel
+      id="email"
+        [(ngModel)]="contact.email"
         #emailField="ngModel"
         name="email"
         type="email"
@@ -92,7 +95,8 @@
       <label for="phone"
         ><span class="text-danger">*</span> {{ "phone" | titlecase }}</label
       ><input
-        ngModel
+      id="phone"
+        [(ngModel)]="contact.phone"
         #phoneField="ngModel"
         name="phone"
         pattern="0[0-9]{1,2}\-?\s?[0-9]{3}\s?[0-9]{4}"
@@ -125,7 +129,8 @@
         <label for="country"
           ><span class="text-danger">*</span> {{ "country" | titlecase }}</label
         ><input
-          ngModel
+        id="country"
+          [(ngModel)]="contact.address.country"
           #countryField="ngModel"
           name="country"
           type="text"
@@ -141,14 +146,12 @@
           "country mast be at list two characters" | textCapital
         }}</span>
       </div>
-    </div>
-
-    <div class="row justify-content-center mt-2">
       <div class="col-md-5 mb-2 form-group">
         <label for="city"
           ><span class="text-danger">*</span> {{ "city" | titlecase }}</label
         ><input
-          ngModel
+        id="city"
+          [(ngModel)]="contact.address.city"
           name="city"
           type="text"
           class="form-control"
@@ -164,11 +167,16 @@
           "city mast be at list two characters" | textCapital
         }}</span>
       </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+      
       <div class="col-md-5 mb-2 form-group">
         <label for="street"
           ><span class="text-danger">*</span> {{ "street" | titlecase }}</label
         ><input
-          ngModel
+        id="street"
+          [(ngModel)]="contact.address.street"
           name="street"
           type="text"
           class="form-control"
@@ -184,15 +192,13 @@
           "street mast be at list two characters" | textCapital
         }}</span>
       </div>
-    </div>
-
-    <div class="row justify-content-center mt-2">
       <div class="col-md-5 mb-2 form-group">
         <label for="houseNumber"
           ><span class="text-danger">*</span>
           {{ "houseNumber" | titlecase }}</label
         ><input
-          ngModel
+        id="houseNumber"
+          [(ngModel)]="contact.address.houseNumber"
           name="houseNumber"
           type="number"
           class="form-control"
@@ -208,39 +214,15 @@
           "house Number mast be at list two characters" | textCapital
         }}</span>
       </div>
-       
     </div>
   </div>
-   <div class="center">
-    <div class="col-md-10">
-      <div class="col-md-5 mb-2 form-group">
-        <label for="age"
-          ><span class="text-danger"></span> {{ "age" | textCapital }}</label
-        ><input
-          ngModel
-          name="age"
-          type="number"
-          class="form-control"
-          minlength="2"
-          #ageField="ngModel"
-          [ngClass]="{
-            'is-invalid': ageField.invalid && ageField.touched,
-            'is-valid': ageField.valid && ageField.touched
-          }"
-        />
-        <span class="invalid-feedback">{{
-          "age mast be at list two characters" | textCapital
-        }}</span>
-      </div>
-    </div>
-  </div>
-
   <div class="row justify-content-center">
     <div class="col-md-5 mb-2 form-group">
       <label for="birthday"
         ><span class="text-danger"></span> {{ "birthday" | titlecase }}</label
       ><input
-        ngModel
+      id="birthday"
+        [(ngModel)]="contact.birthday"
         #birthdayField="ngModel"
         name="birthday"
         type="date"

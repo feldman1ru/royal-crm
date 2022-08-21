@@ -1,12 +1,10 @@
-<page-header
-  title="contacts"
-  subtitle="this is the Contacts page"
-  icon="fas fa-users"
->
+<page-header title="contacts" subtitle="this is the Contacts page" icon="fas fa-users">
 </page-header>
 
 <div class="mb-2">
-  <a routerLink="new-contact" class="btn btn-outline-dark" title="Add  new contact" role="button">{{"add contacts" | titlecase}}</a>
+  <a routerLink="new-contact"
+     class="btn btn-outline-dark" title="Add new contact"
+     role="button">{{"add contacts" | titlecase}}</a>
 </div>
 
 <table *ngIf="contacts && contacts.length; else noContacts" class="table">
@@ -29,28 +27,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr
-      [ngClass]="odd ? 'alert-success' : 'bg-light'"
-      *ngFor="let contact of contacts; index as i; odd as odd"
+    <tr [ngClass]="odd ? 'alert-success' : 'bg-light'"
+     *ngFor="let contact of contacts; index as i; odd as odd"
       [routerLink]="['contact-details', contact._id]"
-      role="button"
-    >
+       role="button">
       <td>{{ i + 1 }}</td>
       <td>{{ contact.firstName | textCapital }}</td>
       <td>{{ contact.lastName | textCapital }}</td>
       <td>{{ contact.phone }}</td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.birthday | date }}</td>
-      <td></td>
+      <td>{{ contact.birthday | age}}</td>
       <td>{{ contact.address.country }}</td>
       <td>{{ contact.address.city }}</td>
       <td>{{ contact.address.street }}</td>
       <td>{{ contact.address.houseNumber }}</td>
       <td>{{ contact.createdAt | date :'medium' }}</td>
-      <td>edit</td>
-      <td><button class="btn btn-outline-dark"(click)="deleteContact($event, contact._id!)">
-        <i class="fas fa-trash"></i>
-      </button></td>
+      <td>
+        <a
+          class="btn btn-outline-dark"
+          [routerLink]="['edit-contact', contact._id]"
+          role="button"
+          ><i class="fas fa-pen"></i
+        ></a>
+      </td>
+      <td><button class="btn btn-outline-dark" (click)="deleteContact($event, contact._id!)">
+          <i class="fas fa-trash"></i>
+        </button></td>
     </tr>
   </tbody>
 </table>

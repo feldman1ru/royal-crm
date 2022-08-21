@@ -9,18 +9,16 @@ import { ContactService } from '../contacts.servise';
   styleUrls: []
 })
 export class ContactDetailsComponent implements OnInit {
-  
   contact: Contact | void = undefined;
-  constructor( private router: ActivatedRoute, private CS: ContactService) {}
+  constructor(private AR: ActivatedRoute, private CS: ContactService) {}
 
   ngOnInit(): void {
-
-    this.router.paramMap.subscribe((param: ParamMap)=> {
+    this.AR.paramMap.subscribe((param: ParamMap) => {
       const id = param.get('id');
-      
-      const contact = this.CS.getContact(id!);
-      if (contact) this.contact = contact; 
-    })
+      this.contact = this.CS.getContact(id!,
+        (contact: Contact | void) => (this.contact = contact)
+      );
+    });
   }
   
 }
