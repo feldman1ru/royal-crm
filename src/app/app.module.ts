@@ -33,6 +33,12 @@ import { ContactDetailsComponent } from './pages/Contacts/contact-details/contac
 import { EditCustomerComponent } from './pages/Customers/edit-customer/edit-customer.component';
 import { AgePipe } from './pipes/age.pipe';
 import { EditContactComponent } from './pages/Contacts/edit-contact/edit-contact.component';
+import { SearchBarComponent } from './componets/search-bar/search-bar.component';
+import { CustomersTableComponent } from './pages/Customers/customers-display-modes/customers-table/customers-table.component';
+import { CustomersFolderComponent } from './pages/Customers/customers-display-modes/customers-folder/customers-folder.component';
+import { ContactsTableComponent } from './pages/Contacts/contacts-display-modes/contacts-table/contacts-table.component';
+import {ContactsFolderComponent} from './pages/Contacts/contacts-display-modes/contacts-folder/contacts-folder.component'
+
 
 
 
@@ -41,7 +47,7 @@ import { EditContactComponent } from './pages/Contacts/edit-contact/edit-contact
 
 
 @NgModule({
-  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent, EditCustomerComponent, AgePipe, EditContactComponent],
+  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent, EditCustomerComponent, AgePipe, EditContactComponent, SearchBarComponent, CustomersTableComponent,CustomersFolderComponent, ContactsTableComponent,ContactsFolderComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

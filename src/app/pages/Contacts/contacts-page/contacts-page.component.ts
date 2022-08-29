@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/componets/search-bar/category';
 import { Contact } from '../contact';
 import { ContactService } from '../contacts.servise';
 
@@ -7,18 +8,28 @@ import { ContactService } from '../contacts.servise';
   templateUrl: './contacts-page.component.html',
   styleUrls: []
 })
-export class ContactsPageComponent {
-
+export class ContactsPageComponent implements OnInit {
+  contactsData: Array<Contact> = [];
   contacts: Array<Contact> = [];
+  categpries: Array<Category> = [{name: 'First Name', value: 'firstName'},{name: 'Last Name', value: 'lastName'}];
 
   constructor(private CS: ContactService) {
     this.contacts = CS.getAll();
+  }
+
+  onSearch(array: Contact[]){
+    this.contacts = array;
   }
 
   deleteContact(e: MouseEvent, id: string) {
     e.stopPropagation();
     this.CS.delete(id);
     this.contacts = this.CS.getAll()
+  }
+
+  ngOnInit(): void {
+    this.contactsData = this.CS.getAll();
+    this.contacts = [...this.contactsData];
   }
 }
 

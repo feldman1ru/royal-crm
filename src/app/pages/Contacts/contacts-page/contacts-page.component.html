@@ -5,7 +5,10 @@
   <a routerLink="new-contact"
      class="btn btn-outline-dark" title="Add new contact"
      role="button">{{"add contacts" | titlecase}}</a>
+     
 </div>
+
+<search-bar [categories]="categpries"(arrayFiltered)="onSearch($event)"[array]="contactsData"></search-bar>
 
 <table *ngIf="contacts && contacts.length; else noContacts" class="table">
   <thead>
@@ -57,6 +60,8 @@
     </tr>
   </tbody>
 </table>
+
+<app-contacts-folder [contacts]="contacts"></app-contacts-folder>
 
 <ng-template #noContacts>
   <div class="p-2">

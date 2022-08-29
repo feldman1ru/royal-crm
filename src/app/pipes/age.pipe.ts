@@ -5,8 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class AgePipe implements PipeTransform {
   
-
-  
   transform(value: any): number {
 
     let val = new Date(value).getFullYear();
@@ -14,6 +12,5 @@ export class AgePipe implements PipeTransform {
     let age = (todey - val);
     return age
 }
-
 }
 
