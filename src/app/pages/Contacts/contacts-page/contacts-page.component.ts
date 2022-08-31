@@ -12,6 +12,8 @@ export class ContactsPageComponent implements OnInit {
   contactsData: Array<Contact> = [];
   contacts: Array<Contact> = [];
   categpries: Array<Category> = [{name: 'First Name', value: 'firstName'},{name: 'Last Name', value: 'lastName'}];
+  table: boolean = true;
+  folder: boolean = false;
 
   constructor(private CS: ContactService) {
     this.contacts = CS.getAll();
@@ -30,6 +32,16 @@ export class ContactsPageComponent implements OnInit {
   ngOnInit(): void {
     this.contactsData = this.CS.getAll();
     this.contacts = [...this.contactsData];
+  }
+
+  showTable(){
+    this.folder = false;
+    this.table = true;
+  }
+  showFolder(){
+    this.folder = true;
+    this.table = false;
+
   }
 }
 
