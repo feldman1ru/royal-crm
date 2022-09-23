@@ -15,7 +15,6 @@ export class SingUpPageComponent {
 
   onSubmit(form: NgForm){
 
-    
     const {valid, value} = form;
     if(valid){
       this.US.sinupWithEmailAndPassword(value, (user: any): any => {
@@ -40,12 +39,8 @@ export class SingUpPageComponent {
       if(user) return this.router.navigate(['/customers']);
 
     });
-
   }
   resetForm(form : NgForm){
     form.resetForm()
   }
-
-
-
 }

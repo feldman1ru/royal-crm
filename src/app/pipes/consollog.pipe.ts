@@ -7,7 +7,5 @@ export class ConsollogPipe implements PipeTransform {
 
   transform(value:any) {
     console.log(value);
-    
   }
-
 }

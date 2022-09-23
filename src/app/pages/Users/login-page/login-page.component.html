@@ -1,10 +1,10 @@
 <page-header
  title="login" 
  subtitle="plase fill the form and login " 
- icon="fa-solid fa-sign-in
-"
+ icon="fa-solid fa-sign-in"
 bgColor="alert-info rounded-3 p-2 m-2"
 ></page-header>
+
 <div class="center mt-4">
   <form
    #loginForm="ngForm"
@@ -58,7 +58,6 @@ bgColor="alert-info rounded-3 p-2 m-2"
       Did not sign up yet?
       <a routerLink="/signup" class="fw-bold">Click hear...</a>
     </div>
-
 
     <input
     *ngIf="!threeFailedAttemptsToLogin" 

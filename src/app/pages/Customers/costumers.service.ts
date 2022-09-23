@@ -48,19 +48,6 @@ export class CustomerService {
     );
     constructor(private FS:Firestore) {}
 
-  // getAll() {
-  //   let customers: any = []
-  //   onSnapshot(this.collectionRef, (snapShotData) =>{
-  //     snapShotData.docs.forEach((customer) => {
-  //       customers.push({
-  //         ...customer.data(),
-  //         _id : customer.id
-  //       });
-  //     });
-  //   });
-  //   return customers;
-  // }
-
   getAll(cb: Function) {
     let customers: any = [];
     const unsubscribeGetAll = onSnapshot(this.collectionRef, (snapShotData) => {
@@ -74,13 +61,8 @@ export class CustomerService {
     return cb(customers, unsubscribeGetAll);
   }
 
-  
-
   add(customer: Customer, cb: Function) {
-    // console.log(this.collectionRef);
-    console.log(customer);
     customer.createdAt = new Date();
-    // customer.createdAt = serverTimestamp();
      addDoc(this.collectionRef,customer)
     .then(()=> cb())
     .catch((err)=> console.log(err));

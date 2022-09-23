@@ -46,14 +46,6 @@ export class CustomersPageComponent implements OnInit {
     this.display = display;
   }
 
-  // ngOnInit(): void {
-  //   this.customersRowData = this.CS.getAll(
-  //     // tut kolbek i he v seredinu
-  //   );
-  //   this.customers = this.customersRowData;
-  //   this.dataReceived = true;
-  // }
-
   ngOnInit() {
     this.CS.getAll((customers: Customer[], unsubscribeGetAll: Function) =>{
       this.customersRowData = customers;

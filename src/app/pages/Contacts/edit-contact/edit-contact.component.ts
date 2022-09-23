@@ -34,17 +34,14 @@ export class EditContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.AR.paramMap.subscribe((param: ParamMap) => {
-      
       const id = param.get('id');
       this.id = id;
-    
       this.CS.getContact(id!, (contact: Contact) => {
         const fireBaseTime = new Date(
           contact.birthday.seconds * 1000 + contact.birthday.nanoseconds / 1000000,
         );
         const newdate = fireBaseTime.toDateString();
         if(contact.birthday){
-
           contact.birthday = newdate;
           contact.birthday = new Date(newdate).toLocaleDateString("en-CA")
         }

@@ -15,12 +15,8 @@ export class LoginPageComponent {
   counter: number = 0;
   threeFailedAttemptsToLogin: boolean = false;
 
-  constructor(private US: UserService, private router: Router){
-    
-  }
+  constructor(private US: UserService, private router: Router){}
   
-
-
   onSubmit(form: NgForm) {
 
     const { value, valid } = form;
@@ -52,14 +48,13 @@ export class LoginPageComponent {
 
         })
     }
-    console.log(value);
+  
   }
   loginWithGoogle() {
     this.US.signupAndloginWithGoogle((user: any): any=>{
       if(user) return this.router.navigate(['/customers']);
 
     });
-
   }
 
   resetForm(form: NgForm) {
