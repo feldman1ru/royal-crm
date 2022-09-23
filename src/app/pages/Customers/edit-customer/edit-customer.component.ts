@@ -22,15 +22,12 @@ export class EditCustomerComponent implements OnInit {
 
   onSubmit(customer: Customer) {
     customer.createdAt = this.createdAt!;
-    customer._id = this.id!;
-    this.CS.edit(customer);
-    this.router.navigate(['/customers']);
+    this.CS.edit(customer, this.id!, ()=> this.router.navigate(['/customers']));
+    ;
   }
 
   resetForm() {
-    console.log('in reset form father');
-
-    this.CS.getCustomer(this.id!, ({ ...customer }: Customer) => {
+    this.CS.getCustomer(this.id!, (customer: Customer) => {
       this.customer = customer;
     });
   }
@@ -40,7 +37,7 @@ export class EditCustomerComponent implements OnInit {
       const id = param.get('id');
       this.id = id;
       
-      this.CS.getCustomer(id!, ({ ...customer }: Customer) => {
+      this.CS.getCustomer(id!, (customer: Customer) => {
         this.customer = customer;
         this.createdAt = customer.createdAt;
       });

@@ -22,7 +22,7 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { ContactsPageComponent } from './pages/Contacts/contacts-page/contacts-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { LoginPageComponent } from './pages/Users/login-page/login-page.component';
 import { NewCustomerComponent } from './pages/Customers/new-customer/new-customer.component';
 import { CustomerFormComponent } from './pages/Customers/customer-form/customer-form.component';
 import { ContactComponent } from './pages/Contacts/contact/contact.component';
@@ -33,11 +33,26 @@ import { ContactDetailsComponent } from './pages/Contacts/contact-details/contac
 import { EditCustomerComponent } from './pages/Customers/edit-customer/edit-customer.component';
 import { AgePipe } from './pipes/age.pipe';
 import { EditContactComponent } from './pages/Contacts/edit-contact/edit-contact.component';
-import { SearchBarComponent } from './componets/search-bar/search-bar.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component'
 import { CustomersTableComponent } from './pages/Customers/customers-display-modes/customers-table/customers-table.component';
 import { CustomersFolderComponent } from './pages/Customers/customers-display-modes/customers-folder/customers-folder.component';
 import { ContactsTableComponent } from './pages/Contacts/contacts-display-modes/contacts-table/contacts-table.component';
-import {ContactsFolderComponent} from './pages/Contacts/contacts-display-modes/contacts-folder/contacts-folder.component'
+import { ContactsFolderComponent } from './pages/Contacts/contacts-display-modes/contacts-folder/contacts-folder.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { DisplayModeControllersComponent } from './components/display-mode-controllers/display-mode-controllers.component';
+import { CustomerBigFolderComponent } from './pages/Customers/customers-display-modes/customer-big-folder/customer-big-folder.component';
+import { ContactsBigFolderComponent } from './pages/Contacts/contacts-display-modes/contacts-big-folder/contacts-big-folder.component';
+import { SingUpPageComponent } from './pages/Users/sing-up-page/sing-up-page.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ConsollogPipe } from './pipes/consollog.pipe';
+
+
+
+
 
 
 
@@ -47,8 +62,8 @@ import {ContactsFolderComponent} from './pages/Contacts/contacts-display-modes/c
 
 
 @NgModule({
-  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent, EditCustomerComponent, AgePipe, EditContactComponent, SearchBarComponent, CustomersTableComponent,CustomersFolderComponent, ContactsTableComponent,ContactsFolderComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [AppComponent, CustomersPageComponent, HeaderComponent, FooterComponent, MainComponent, SideNavComponent, LogoComponent, HamburgerComponent, LeftTopNavComponent, RightTopNavComponent, LoggedComponent, NotLoggedComponent, PageHeaderComponent, TopNavLinkComponent, RandomNamPipe, TextCapitalPipe, SideNavLinkComponent, ErrorPageComponent, ContactsPageComponent, PageNotFoundComponent, LoginPageComponent, NewCustomerComponent, CustomerFormComponent, ContactComponent, NewContactComponent, ContactsFormComponent, CustomerDetailsComponent, ContactDetailsComponent, EditCustomerComponent, AgePipe, EditContactComponent, SearchBarComponent, CustomersTableComponent,CustomersFolderComponent, ContactsTableComponent,ContactsFolderComponent, DisplayModeControllersComponent, CustomerBigFolderComponent, ContactsBigFolderComponent,SingUpPageComponent, LoaderComponent, AboutComponent, ConsollogPipe],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
   providers: [],
   bootstrap: [AppComponent],
 })

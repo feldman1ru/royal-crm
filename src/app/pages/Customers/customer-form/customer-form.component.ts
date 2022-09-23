@@ -26,11 +26,13 @@ export class CustomerFormComponent implements OnInit {
     notes: '',
   };
 
+  @Input() btnText: string = 'submit'
+
   ngOnInit(){
     
 }
 
-  onSubmit({ valid, value }: NgForm) {
+  onSubmit({ valid, value }: NgForm) { 
     if (valid) this.submit.emit(value);
   }
 

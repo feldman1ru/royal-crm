@@ -1,0 +1,11 @@
+<div class="d-flex solid flex-wrap ">
+    <div *ngFor="let customer of customers" [routerLink]="['customer-details', customer._id]" class="m-2 text-center w-40 border p-5 ">
+      <i class="fas fa-user"></i>
+      <div class="text-center">
+        {{customer.phone | titlecase}}
+        <p class="card-text"></p>
+        {{customer.firstName + ' ' + customer.lastName | titlecase}}
+      </div>
+     
+    </div>
+  </div>

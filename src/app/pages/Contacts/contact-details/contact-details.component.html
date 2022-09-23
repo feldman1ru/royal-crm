@@ -1,4 +1,3 @@
-<p>contact-details works!</p>
 <page-header
   title="Contacts details"
   icon="fa fa-user"
@@ -38,11 +37,11 @@
           </tr>
           <tr>
             <th>{{ "Birthday" | titlecase }}</th>
-            <td>{{ contact.birthday }}</td>
+            <td>{{ contact.birthday.toDate() | date:'yyyy/MM/dd'}}</td>
           </tr>
           <tr>
             <th>{{ "Age" | titlecase}}</th>
-            <td>{{contact.birthday | age}}</td>
+            <td>{{contact.birthday.toDate() | date:'yyyy/MM/dd' | age}}</td>
           </tr>
           <tr>
             <th>{{ "address" | titlecase }}</th>
@@ -81,10 +80,10 @@
               </table>
             </td>
           </tr>
-          <!-- <tr *ngIf="contact.notes">
-            <th>{{ "notes" | titlecase }}</th>
-            <td>{{ contact.notes }}</td>
-          </tr> -->
+          <tr *ngIf="createAt">
+            <th>{{'created at ' | titlecase}}</th>
+            <td>{{createAt | date : 'yyyy/MM/dd'}}</td>
+          </tr>
         </tbody>
       </table>
     </div>

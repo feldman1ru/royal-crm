@@ -23,24 +23,31 @@ export class EditContactComponent implements OnInit {
   onSubmit(contact: Contact) {
     contact.createdAt = this.createdAt!;
     contact._id = this.id!;
-    this.CS.edit(contact);
-    this.router.navigate(['/contacts']);
+    this.CS.edit(contact, this.id!, ()=> this.router.navigate(['/contacts']));
   }
 
   resetForm() {
-    console.log('in reset form father');
-
-    this.CS.getContact(this.id!, ({ ...contact }: Contact) => {
+    this.CS.getContact(this.id!, (contact : Contact) => {
       this.contact = contact;
     });
   }
 
   ngOnInit(): void {
     this.AR.paramMap.subscribe((param: ParamMap) => {
+      
       const id = param.get('id');
       this.id = id;
     
-      this.CS.getContact(id!, ({ ...contact }: Contact) => {
+      this.CS.getContact(id!, (contact: Contact) => {
+        const fireBaseTime = new Date(
+          contact.birthday.seconds * 1000 + contact.birthday.nanoseconds / 1000000,
+        );
+        const newdate = fireBaseTime.toDateString();
+        if(contact.birthday){
+
+          contact.birthday = newdate;
+          contact.birthday = new Date(newdate).toLocaleDateString("en-CA")
+        }
         this.contact = contact;
         this.createdAt = contact.createdAt;
       });

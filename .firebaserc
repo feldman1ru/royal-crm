@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "royal-crm-ruslan-feldman": {
+      "hosting": {
+        "royal-crm": [
+          "royal-crm-ruslan-feldman"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "royal-crm-ruslan-feldman"
+  }
+}

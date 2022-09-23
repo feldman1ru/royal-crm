@@ -11,15 +11,18 @@ import { Customer } from '../customer';
   styles: [],
 })
 export class CustomerDetailsComponent implements OnInit {
+  createAt: any;
   customer: Customer | void = undefined;
   constructor(private AR: ActivatedRoute, private CS: CustomerService) {}
 
   ngOnInit(): void {
     this.AR.paramMap.subscribe((param: ParamMap) => {
       const id = param.get('id');
-      this.customer = this.CS.getCustomer(
+      this.CS.getCustomer(
         id!,
-        (customer: Customer | void) => (this.customer = customer)
+        (customer: Customer) => {this.customer = customer;
+          this.createAt = new Date(customer.createdAt?.seconds * 1000);
+        }
       );
     });
   }

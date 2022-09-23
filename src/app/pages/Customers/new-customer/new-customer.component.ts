@@ -15,8 +15,13 @@ export class NewCustomerComponent{
 
   onSubmit(customer: Customer){
     
-      this.CS.add(customer)
-      this.routerServise.navigate(['/customers'])
+      this.CS.add(customer, ()=> 
+          {
+            console.log('test');
+            this.routerServise.navigate(['/customers']);
+          }
+        );
+      ;
   }
  
 }

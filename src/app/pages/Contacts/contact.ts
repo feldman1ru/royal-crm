@@ -5,10 +5,10 @@ export interface Contact {
         firstName: string;
         lastName: string;
         email: string;
-        birthday: Date;
+        birthday?: any;
         phone: string;
         age?: number;
         address: Address;
-        createdAt?: Date;
+        createdAt?: any;
         
 }

@@ -1,4 +1,7 @@
-<page-header title="contacts" subtitle="this is the Contacts page" icon="fas fa-users">
+<page-header
+  title="contacts"
+  subtitle="this is the Contacts page"
+  icon="fas fa-users">
 </page-header>
 
 <div class="mb-2 d-flex justify-content-between">
@@ -7,79 +10,33 @@
      class="btn btn-outline-dark" title="Add new contact"
      role="button">{{"add contacts" | titlecase}}</a>
   </div>
-  <div>
-    <a
-    class="btn btn-outline-dark me-3" (click)="showFolder()"
-    role="button"
-    ><i class="fas fa-folder"></i
-  ></a>
-  <a
-  class="btn btn-outline-dark" (click)="showTable()"
-  role="button"
-  ><i class="fas fa-table"></i
-></a>
-  </div>
+  
+  <app-display-mode-controllers [controllers]="controllers"
+(onChangeDisplay)="onChangeDisplay($event)">
+</app-display-mode-controllers>
 </div>
 
-<search-bar [categories]="categpries"(arrayFiltered)="onSearch($event)"[array]="contactsData"></search-bar>
+<search-bar
+*ngIf="contacts && contacts.length"
+ [categories]="categpries"
+ (arrayFiltered)="onSearch($event)"
+ [array]="contactsRowData"></search-bar>
 
-<div *ngIf="table">
+<div *ngIf="contacts && contacts.length; else noContacts">
+  <app-contacts-table
+  *ngIf="display === 'table'"
+  [contacts]="contacts"
+  (onDeleteContact)="deleteContact($event)">
+    </app-contacts-table>
 
-  <table *ngIf="contacts && contacts.length; else noContacts" class="table">
-    <thead>
-      <tr>
-        <th>{{ "Num." | titlecase }}</th>
-        <th>{{ "Name" | titlecase }}</th>
-        <th>{{ "Surname" | titlecase }}</th>
-        <th>{{ "Phone" | titlecase }}</th>
-        <th>{{ "Email" | titlecase }}</th>
-        <th>{{ "birthday" | titlecase }}</th>
-        <th>{{ "age" | titlecase }}</th>
-        <th>{{ "country" | titlecase }}</th>
-        <th>{{ "city" | titlecase }}</th>
-        <th>{{ "street" | titlecase }}</th>
-        <th>{{ "houseNumber" | titlecase }}</th>
-        <th>{{ "createdAt" | titlecase }}</th>
-        <th>{{ "Edit" | titlecase }}</th>
-        <th>{{ "Delete" | titlecase }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr [ngClass]="odd ? 'alert-success' : 'bg-light'"
-       *ngFor="let contact of contacts; index as i; odd as odd"
-        [routerLink]="['contact-details', contact._id]"
-         role="button">
-        <td>{{ i + 1 }}</td>
-        <td>{{ contact.firstName | textCapital }}</td>
-        <td>{{ contact.lastName | textCapital }}</td>
-        <td>{{ contact.phone }}</td>
-        <td>{{ contact.email }}</td>
-        <td>{{ contact.birthday | date }}</td>
-        <td>{{ contact.birthday | age}}</td>
-        <td>{{ contact.address.country }}</td>
-        <td>{{ contact.address.city }}</td>
-        <td>{{ contact.address.street }}</td>
-        <td>{{ contact.address.houseNumber }}</td>
-        <td>{{ contact.createdAt | date :'medium' }}</td>
-        <td>
-          <a
-            class="btn btn-outline-dark"
-            [routerLink]="['edit-contact', contact._id]"
-            role="button"
-            ><i class="fas fa-pen"></i
-          ></a>
-        </td>
-        <td><button class="btn btn-outline-dark" (click)="deleteContact($event, contact._id!)">
-            <i class="fas fa-trash"></i>
-          </button></td>
-      </tr>
-    </tbody>
-  </table>
+  <app-contacts-folder [contacts]="contacts"
+  *ngIf="display === 'folder'">
+  </app-contacts-folder>
 
+  <app-contacts-big-folder  [contacts]="contacts"
+  *ngIf="display === 'bigfolder'">
+  </app-contacts-big-folder>
 </div>
-
-
-<app-contacts-folder [contacts]="contacts" *ngIf="folder"></app-contacts-folder>
 
 <ng-template #noContacts>
   <div class="p-2">

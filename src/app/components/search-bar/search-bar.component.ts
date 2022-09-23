@@ -18,8 +18,8 @@ export class SearchBarComponent implements OnInit {
 
   onSearch(e: any){
 
-    let newArray = [...this.array];
     const term = e.target.value;
+    let newArray = [...this.array];
     const filtered = newArray.filter((item:any)=>item[this.category.value].toLowerCase().trim().includes(term.toLowerCase().trim()));
     this.arrayFiltered.emit(filtered);
   }

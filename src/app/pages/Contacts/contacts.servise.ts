@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { addDoc, collection, CollectionReference, DocumentData, Firestore, onSnapshot, serverTimestamp, updateDoc } from '@angular/fire/firestore';
+import { deleteDoc, doc, getDoc } from '@firebase/firestore';
 import { Contact } from './contact';
 
 @Injectable({
@@ -24,37 +26,66 @@ export class ContactService {
     },
     
   ];
-
-  getAll(): Contact[] {
-    return this.contacts;
-  }
-
-  add(contact: Contact) {
-    contact._id = String(this.contacts.length + 1) + new Date() + Math.random();
-    contact.createdAt = new Date();
-    this.contacts.push(contact);
-    return;
-  }
-
-  getContact(id: string, cb: Function): Contact | void {
-    const contact = this.contacts.find(
-      (contactFromDb: Contact) => contactFromDb._id === id
+  
+  collectionRef: CollectionReference<DocumentData> = collection (
+    this.FS,'contacts'
     );
-    return cb(contact);
+    constructor(private FS:Firestore) {}
+
+  getAll(cb: Function) {
+    let contacts: any = []
+    const unsubscribeGetAll =  onSnapshot(this.collectionRef, (snapShotData) =>{
+      snapShotData.docs.forEach((contact) => {
+        
+        contacts.push({
+          ...contact.data(),
+          _id : contact.id
+        });
+      });
+    });
+    
+    return cb(contacts, unsubscribeGetAll);
+    
+  }
+
+
+  add(contact: Contact, cb: Function) {
+    
+    contact.createdAt = new Date();
+    // contact.createdAt = serverTimestamp();
+    addDoc(this.collectionRef, contact)
+    .then(()=> cb())
+    .catch((err)=> console.log(err)
+    );
+    return cb()
+
+    
+  }
+
+  async getContact(id: string, cb: Function){
+
+    try{
+      const docRef = doc(this.FS, 'contacts', id);
+      const result = await getDoc(docRef)
+      const contact = {...result.data(), _id: result.id};
+      cb(contact)
+    }catch(error){
+      console.log(error);
+    }
+    
   }
 
   delete(id:string){
-    let contactIndex = this.contacts.findIndex((contact: Contact) => contact._id === id);
-    if (contactIndex === -1) return;
-    this.contacts.splice(contactIndex, 1);
+
+    const docRef = doc(this.FS, 'contacts', id)
+    deleteDoc(docRef).catch((error) => console.log(error)
+    );
   }
 
-  edit(contact: Contact) {
-    let index = this.contacts.findIndex(
-      (contactFromDb) => contactFromDb._id === contact._id
-    );
-    if (index === -1) return;
-    this.contacts[index] = contact;
+  edit(contact: Contact, id: string, cb: Function) {
+   
+    const docRef = doc(this.FS, 'contacts', id)
+    updateDoc(docRef, {...contact}).then(()=> cb()).catch((error)=> console.log(error))
    
   }
 

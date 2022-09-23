@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/componets/search-bar/category';
+import { Controller } from 'src/app/components/display-mode-controllers/controller';
+import { Category } from 'src/app/components/search-bar/category';
 import { CustomerService } from '../costumers.service';
 import { Customer } from '../customer';
 
@@ -10,28 +11,60 @@ import { Customer } from '../customer';
   styles: [],
 })
 export class CustomersPageComponent implements OnInit {
-  customersData: Array<Customer> =[];
+  customersRowData: Array<Customer> =[];
   customers: Array<Customer> = [];
   categories: Array<Category> = [
-    {name: 'First Name', value: 'firstName'},{name: 'Last Name', value: 'lastName'}
+    {name: 'First Name', value: 'firstName'},
+    {name: 'Last Name', value: 'lastName'},
+    {name: 'Email', value: 'email'},
+    {name: 'Phone', value: 'phone'},
+    {name: 'Note', value: 'notes'},
   ];
 
-  constructor(private CS: CustomerService) {
-   
-  }
+  controllers: Array<Controller> = [
+    { icon: 'fa fa-table-list', value: 'table' },
+    { icon: 'fa fa-folder', value: 'folder' },
+    { icon: 'fa fa-align-justify', value: 'bigfolder' },
+  ];
+  display: string = 'table';
+  dataReceived: boolean = false;
+  unsubscribeGetAll: Function = () => {};
+  
+
+  constructor(private CS: CustomerService) {}
 
   onSearch(array: Customer[]){
     this.customers = array;
   }
 
-  deleteCustomer(e: MouseEvent, id: string) {
-    e.stopPropagation();
-    this.CS.delete(id);
-    this.customers = this.CS.getAll();
-  }
-  ngOnInit(): void {
-    this.customersData = this.CS.getAll();
-    this.customers = [...this.customersData];
+  deleteCustomer(array: Array<Customer>) {
+    this.customersRowData = array;
+    this.customers = this.customersRowData;
   }
 
+  onChangeDisplay(display: string) {
+    this.display = display;
+  }
+
+  // ngOnInit(): void {
+  //   this.customersRowData = this.CS.getAll(
+  //     // tut kolbek i he v seredinu
+  //   );
+  //   this.customers = this.customersRowData;
+  //   this.dataReceived = true;
+  // }
+
+  ngOnInit() {
+    this.CS.getAll((customers: Customer[], unsubscribeGetAll: Function) =>{
+      this.customersRowData = customers;
+    this.customers = this.customersRowData;
+    this.dataReceived = true;
+    this.unsubscribeGetAll = unsubscribeGetAll;
+    });
+    
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeGetAll();
+  }
 }

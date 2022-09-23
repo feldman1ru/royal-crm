@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Contact } from '../contact';
 
@@ -8,7 +8,7 @@ import { Contact } from '../contact';
   styles: [
   ]
 })
-export class ContactsFormComponent implements OnInit {
+export class ContactsFormComponent {
   @Output() submit = new EventEmitter();
   @Output() reset = new EventEmitter();
   @Input() contact: Contact = {
@@ -27,11 +27,11 @@ export class ContactsFormComponent implements OnInit {
     
   };
   
-  ngOnInit(){
-
-  }
+  @Input() btnText: string = 'submit';
+  
 
   onSubmit({ valid, value }: NgForm) {
+    value.birthday = new Date(value.birthday);
     if(valid)this.submit.emit(value);
   }
 
@@ -53,3 +53,4 @@ export class ContactsFormComponent implements OnInit {
     this.reset.emit();
   }
 }
+
