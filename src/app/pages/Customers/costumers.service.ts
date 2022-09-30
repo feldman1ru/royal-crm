@@ -46,6 +46,7 @@ export class CustomerService {
     this.FS,
     'customers'
     );
+    unsubscribeGetAll: Function = () => {};
     constructor(private FS:Firestore) {}
 
   getAll(cb: Function) {
@@ -66,7 +67,7 @@ export class CustomerService {
      addDoc(this.collectionRef,customer)
     .then(()=> cb())
     .catch((err)=> console.log(err));
-    return cb() 
+     
   }
 
   async getCustomer(id: string, cb: Function) {
@@ -90,5 +91,9 @@ export class CustomerService {
     const docRef = doc(this.FS, 'customers', id)
     updateDoc(docRef, {...customer}).then(()=> cb()).catch((error)=> console.log(error))
     
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeGetAll();
   }
 }

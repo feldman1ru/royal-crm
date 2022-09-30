@@ -30,7 +30,9 @@ export class ContactService {
   collectionRef: CollectionReference<DocumentData> = collection (
     this.FS,'contacts'
     );
+    unsubscribeGetAll: Function = () => {};
     constructor(private FS:Firestore) {}
+
 
   getAll(cb: Function) {
     let contacts: any = []
@@ -57,9 +59,6 @@ export class ContactService {
     .then(()=> cb())
     .catch((err)=> console.log(err)
     );
-    return cb()
-
-    
   }
 
   async getContact(id: string, cb: Function){
@@ -89,4 +88,12 @@ export class ContactService {
    
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribeGetAll();
+  }
+ 
+
 }
+
+
+

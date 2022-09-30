@@ -20,7 +20,7 @@
 </app-display-mode-controllers>
 </div>
 
-<search-bar *ngIf="customers && customers.length"
+<search-bar
  [categories]="categories"
  (arrayFiltered)="onSearch($event)"
  [array]="customersRowData"></search-bar>

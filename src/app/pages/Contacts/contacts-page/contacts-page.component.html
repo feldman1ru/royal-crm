@@ -17,7 +17,6 @@
 </div>
 
 <search-bar
-*ngIf="contacts && contacts.length"
  [categories]="categpries"
  (arrayFiltered)="onSearch($event)"
  [array]="contactsRowData"></search-bar>
